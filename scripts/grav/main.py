@@ -7,5 +7,5 @@ with open("/etc/nginx/sites-available/grav.conf", "w") as f:
     f.write(template)
     
 # depreceated, TODO: replace with os.subprocess
-os.system("sh ../nginx-ensite.sh grav.conf")
+os.system("sh ../nginx-ensite.sh grav")
 os.system("sh launch-docker.sh")
