@@ -12,5 +12,5 @@ rm -rf /etc/nginx/sites-enabled/default
 
 git clone https://git.162536.xyz/drunkendog/standard-build.git
 
-cd scripts
+cd standard-build/scripts
 exec bash
