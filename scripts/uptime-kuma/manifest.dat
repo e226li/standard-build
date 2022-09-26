@@ -1,0 +1,6 @@
+%
+@ #ip_address 
+@ http://172.30.6.1:3001/
+%
+@ #service
+@ uptime-kuma
