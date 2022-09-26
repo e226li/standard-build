@@ -15,7 +15,7 @@ for directory in directories:
 
     for replacement in manifest_info:
         if len(replacement) <= 2:
-            replacement.append(-1)
+            replacement.append("-1")
 
         current_setup_template.replace(replacement[0].rstrip("\n"), replacement[1].rstrip("\n"), int(replacement[2].rstrip("\n")))
     
