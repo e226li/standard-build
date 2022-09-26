@@ -14,7 +14,7 @@ for directory in directories:
         manifest_info = [line_info.split("\n@ ") for line_info in f.read().split("%")]
 
     for replacement in manifest_info:
-        if len(replacement) == 2:
+        if len(replacement) <= 2:
             replacement.append(-1)
 
         current_setup_template.replace(replacement[0].rstrip("\n"), replacement[1].rstrip("\n"), int(replacement[2].rstrip("\n")))
