@@ -13,12 +13,11 @@ for directory in directories:
     with open(f"{directory}/manifest.dat", "r") as f:
         manifest_info = [line_info.split("\n@ ")[1:] for line_info in f.read().split("%")[1:]]
 
-    for replacement in manifest_info:
-        print(replacement)
-        
+    for replacement in manifest_info:        
         if len(replacement) == 2:
             replacement.append("-1")
-
+        
+        print(replacement[0].rstrip("\n"), replacement[1].rstrip("\n"), int(replacement[2].rstrip("\n")))
         current_setup_template.replace(replacement[0].rstrip("\n"), replacement[1].rstrip("\n"), int(replacement[2].rstrip("\n")))
     
     if glob.glob(f"{directory}/parser.py"):
