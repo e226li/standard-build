@@ -11,7 +11,7 @@ if len(sys.argv) >= 2:
 for directory in directories:
     current_setup_template = setup_template
     with open(f"{directory}/manifest.dat", "r") as f:
-        manifest_info = [line_info.split("\n@ ") for line_info in f.read().split("%")[1:]]
+        manifest_info = [line_info.split("\n@ ")[1:] for line_info in f.read().split("%")[1:]]
 
     for replacement in manifest_info:
         print(replacement)
