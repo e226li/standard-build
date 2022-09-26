@@ -17,7 +17,7 @@ for directory in directories:
         if len(replacement) == 2:
             replacement.append("-1")
         
-        print(replacement[0].rstrip("\n"), replacement[1].rstrip("\n"), int(replacement[2].rstrip("\n")))
+        print(replacement[0].rstrip(), replacement[1].rstrip(), int(replacement[2].rstrip().rstrip("\n")))
         current_setup_template = current_setup_template.replace(replacement[0].rstrip("\n"), replacement[1].rstrip("\n"), int(replacement[2].rstrip("\n")))
     
     if glob.glob(f"{directory}/parser.py"):
