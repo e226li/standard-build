@@ -1,14 +1,17 @@
-import glob, importlib
+import glob, importlib, sys
 
 with open("setup-template.py", "r") as f:
     setup_template = f.read()
 
 directories = glob.glob("*/", recursive=False)
 
+if len(sys.argv) >= 2:
+    directories = sys.argv[1:]
+
 for directory in directories:
     current_setup_template = setup_template
     with open(f"{directory}/manifest.dat", "r") as f:
-        manifest_info = [line_info.split() for line_info in f.read().split()]
+        manifest_info = [line_info.split("\n@ ").rstrip("\n") for line_info in f.read().split("%")]
 
     for replacement in manifest_info:
         if len(replacement) == 2:
