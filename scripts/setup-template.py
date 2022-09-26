@@ -11,7 +11,7 @@ with open("/etc/nginx/sites-available/#service.conf", "w") as f:
     f.write(template)
 
 #GET_CERT
-os.system(f"sh getcert.sh {sys.argv[1]} {sys.argv[2]}")
+os.system(f"sh ../getcert.sh {sys.argv[1]} {sys.argv[2]}")
 
 #GENERATE_NGINX
 # depreceated, TODO: replace with os.subprocess
