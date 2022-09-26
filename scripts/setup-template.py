@@ -10,6 +10,9 @@ with open("../nginx-site-template.conf", "r") as f:
 with open("/etc/nginx/sites-available/#service.conf", "w") as f:
     f.write(template)
 
+#GET_CERT
+os.system(f"sh getcert.sh {sys.argv[1]} {sys.argv[2]}")
+
 #GENERATE_NGINX
 # depreceated, TODO: replace with os.subprocess
 os.system("sh ../nginx-ensite.sh #service")
