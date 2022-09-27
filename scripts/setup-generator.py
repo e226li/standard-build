@@ -9,7 +9,11 @@ if len(sys.argv) >= 2:
     directories = sys.argv[1:]
 
 for directory in directories:
+    if not glob.glob(f"{directory}/manifest.dat"):
+        continue
+        
     current_setup_template = setup_template
+
     with open(f"{directory}/manifest.dat", "r") as f:
         manifest_info = [line_info.split("\n@ ")[1:] for line_info in f.read().split("%")[1:]]
 
