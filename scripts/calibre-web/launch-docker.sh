@@ -3,6 +3,6 @@ docker run -d --net main_subnet --ip 172.30.7.1 \
   -e TZ=America/New_York \
   -e DOCKER_MODS=linuxserver/mods:universal-calibre `#optional` \
   -v /opt/calibre-web/config:/config \
-  -v /opt/calibre-web/config/books:/books \
+  -v /opt/calibre/books:/books \
   --restart unless-stopped \
   lscr.io/linuxserver/calibre-web:latest
