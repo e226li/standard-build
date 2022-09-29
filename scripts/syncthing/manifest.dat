@@ -7,3 +7,9 @@
 %
 @ #ADDITIONAL_REPLACE
 @ template = template.replace("proxy_set_header Host $host;", "proxy_set_header Host $host;\nproxy_set_header Upgrade $http_upgrade;\nproxy_set_header Connection \"upgrade\";")
+%
+@ launch-docker.sh
+@ launch-docker.sh &
+%
+@ #POST_LAUNCH_COMMANDS
+@ os.system("docker exec syncthing chown -Rv abc /data1 /data2")
