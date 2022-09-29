@@ -19,3 +19,5 @@ os.system("sh ../nginx-ensite.sh #service")
 
 #START_CONTAINER
 os.system("sh launch-docker.sh")
+
+#POST_LAUNCH_COMMANDS
