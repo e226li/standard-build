@@ -1,0 +1,6 @@
+%
+@ #ip_address 
+@ http://172.30.14.1:8080/
+%
+@ #service
+@ yourls
