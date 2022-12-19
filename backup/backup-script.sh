@@ -11,7 +11,7 @@ info "Starting backup"
 # Backup the most important directories into an archive named after
 # the machine this script is currently running on:
 
-borg create                         \
+./borg-linux64 create                         \
     --verbose                       \
     --filter AME                    \
     --list                          \
@@ -32,7 +32,7 @@ info "Pruning repository"
 # limit prune's operation to this machine's archives and not apply to
 # other machines' archives also:
 
-borg prune                          \
+./borg-linux64 prune                          \
     --list                          \
     --prefix '{hostname}-'          \
     --show-rc                       \
@@ -46,7 +46,7 @@ prune_exit=$?
 
 info "Compacting repository"
 
-borg compact
+./borg-linux64 compact
 
 compact_exit=$?
 
