@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ./backup.conf
+. /etc/backup.conf
 
 # some helpers and error handling:
 info() { printf "\n%s %s\n\n" "$( date )" "$*" >&2; }
