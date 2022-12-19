@@ -19,7 +19,7 @@ salted_hash_value = hashlib.sha512(salted_secret_seed.encode())
 
 with open("backup.conf", "w") as f:
     f.write(f"export BORG_REPO='ssh://{hostname}@{server_hostname}.162536.xyz:22/~/backup/docker'\n")
-    f.write(f"export BORG_PASSPHRASE='{salted_hash_value}'\n")
+    f.write(f"export BORG_PASSPHRASE='{salted_hash_value.hexdigest()}'\n")
 
 os.system("ssh-keygen -t rsa -q -f \"$HOME/.ssh/id_rsa\" -N \"\"")
 os.system(f"ssh-copy-id {hostname}@{server_hostname}.162536.xyz")
