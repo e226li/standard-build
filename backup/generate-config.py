@@ -1,6 +1,7 @@
 import socket
 import hashlib
 import os
+import getpass
 
 server_hostname = input("Enter backup server subdomain: ").rstrip()
 hostname = input("Enter subdomain: ").rstrip()
@@ -12,7 +13,7 @@ s.close()
 
 assert socket.gethostbyname(hostname + ".162536.xyz") == ip_address, "Hostname does not resolve to ip!"
 
-secret_seed = input("Enter passphrase: ").rstrip()
+secret_seed = getpass.getpass("Enter passphrase: ").rstrip()
 salted_secret_seed = hostname + secret_seed
 salted_hash_value = hashlib.sha512(salted_secret_seed.encode())
 
