@@ -2,4 +2,4 @@
 
 . ./backup.conf
 
-borg init
+./borg-linux64 init
