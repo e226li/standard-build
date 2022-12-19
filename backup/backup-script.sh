@@ -32,7 +32,7 @@ info "Pruning repository"
 # limit prune's operation to this machine's archives and not apply to
 # other machines' archives also:
 
-./borg-linux64 prune                          \
+/usr/local/bin/borg-linux64 prune                          \
     --list                          \
     --prefix '{hostname}-'          \
     --show-rc                       \
