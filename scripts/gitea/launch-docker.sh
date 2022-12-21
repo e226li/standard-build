@@ -6,4 +6,4 @@ docker run -d --net main_subnet --ip 172.30.16.1 \
   -v /etc/localtime:/etc/localtime:ro \
   -p 1022:22
   --restart unless-stopped \
-  portainer/portainer-ce:latest
+  gitea/gitea:latest
