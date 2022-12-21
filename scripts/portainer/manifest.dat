@@ -1,6 +1,6 @@
 %
 @ #ip_address 
-@ http://172.30.15.1:8000/
+@ http://172.30.15.1:9000/
 %
 @ #service
 @ portainer
