@@ -1,4 +1,4 @@
-. ./postgres.conf
+. /opt/postgres/postgres.conf
 
 docker run -d --net main_subnet --ip 172.30.18.1 \
   -e TZ=America/New_York \
