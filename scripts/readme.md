@@ -5,3 +5,7 @@
     - Gitea
 - .17.y
     - Nextcloud
+- .18.y
+    - Postgres
+- .19.y
+    - FreshRSS
