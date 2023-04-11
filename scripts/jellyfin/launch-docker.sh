@@ -5,5 +5,6 @@ docker run --net main_subnet --ip 172.30.11.1 \
   -v /opt/jellyfin/config:/config \
   -v /opt/jellyfin/tvshows:/tvshows \
   -v /opt/jellyfin/movies:/movies \
+  -v /opt/jellyfin/mnt:/mnt \
   --restart unless-stopped \
   lscr.io/linuxserver/jellyfin:latest
