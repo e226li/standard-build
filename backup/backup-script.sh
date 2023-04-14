@@ -19,7 +19,7 @@ info "Starting backup"
     --show-rc                       \
     --compression lz4               \
     --exclude-caches                \
-    --exclude mnt/                   \
+    --exclude '*/mnt/'              \
                                     \
     ::'{hostname}-{now}'            \
     /opt                            \
