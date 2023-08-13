@@ -2,6 +2,7 @@
 docker run -d --net main_subnet --ip 172.30.23.1 \
   -e TZ=America/New_York \
   -e DEBUG=False \
+  -e SITE_ROOT=$SITE_ROOT \
   -e DEFAULT_FROM_EMAIL=$DEFAULT_FROM_EMAIL \
   -e EMAIL_HOST=$EMAIL_HOST \
   -e EMAIL_PORT=$EMAIL_PORT \
