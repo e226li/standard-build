@@ -1,4 +1,4 @@
-. ./email.conf
+. ./environment.conf
 docker run -d --net main_subnet --ip 172.30.23.1 \
   -e TZ=America/New_York \
   -e DEBUG=False \
@@ -8,6 +8,7 @@ docker run -d --net main_subnet --ip 172.30.23.1 \
   -e EMAIL_HOST_USER=$EMAIL_HOST_USER \
   -e EMAIL_HOST_PASSWORD=$EMAIL_HOST_PASSWORD \
   -e EMAIL_USE_TLS=True \
+  -v /opt/healthchecks/config:/config \
   --name=healthchecks \
   --restart unless-stopped \
   lscr.io/linuxserver/healthchecks:latest
