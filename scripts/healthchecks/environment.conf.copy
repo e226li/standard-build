@@ -1,3 +1,4 @@
+export SITE_ROOT=
 export DEFAULT_FROM_EMAIL= 
 export EMAIL_HOST= 
 export EMAIL_PORT="587"
