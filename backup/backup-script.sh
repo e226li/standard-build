@@ -2,6 +2,10 @@
 
 . /etc/backup.conf
 
+if [ ! -z "$HEALTHCHECK_URL" ]; then
+        curl -L $HEALTHCHECK_URL + '/start'
+fi
+
 # some helpers and error handling:
 info() { printf "\n%s %s\n\n" "$( date )" "$*" >&2; }
 trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
@@ -57,13 +61,14 @@ global_exit=$(( compact_exit > global_exit ? compact_exit : global_exit ))
 
 if [ ${global_exit} -eq 0 ]; then
     info "Backup, Prune, and Compact finished successfully"
-    if [ ! -z "$HEALTHCHECK_URL" ]; then
-        curl -L $HEALTHCHECK_URL
-    fi
 elif [ ${global_exit} -eq 1 ]; then
     info "Backup, Prune, and/or Compact finished with warnings"
 else
     info "Backup, Prune, and/or Compact finished with errors"
+fi
+
+if [ ! -z "$HEALTHCHECK_URL" ]; then
+        curl -L $HEALTHCHECK_URL + "/{$global_exit}"
 fi
 
 exit ${global_exit}
