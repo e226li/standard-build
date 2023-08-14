@@ -19,9 +19,12 @@ assert getpass.getpass("Confirm passhphrase: ").rstrip() == secret_seed, "Passph
 salted_secret_seed = hostname + secret_seed
 salted_hash_value = hashlib.sha512(salted_secret_seed.encode())
 
+healthcheck_url = input("Enter healthcheck url: ").rstrip()
+
 with open("/etc/backup.conf", "w") as f:
     f.write(f"export BORG_REPO='ssh://{hostname}@{server_hostname}.162536.xyz:22/~/backup/docker'\n")
     f.write(f"export BORG_PASSPHRASE='{salted_hash_value.hexdigest()}'\n")
+    f.write(f"export HEALTHCHECK_URL='{healthcheck_url}'\n")
 
 os.system("ssh-keygen -t rsa -q -f \"$HOME/.ssh/id_rsa\" -N \"\"")
 
