@@ -57,14 +57,13 @@ global_exit=$(( compact_exit > global_exit ? compact_exit : global_exit ))
 
 if [ ${global_exit} -eq 0 ]; then
     info "Backup, Prune, and Compact finished successfully"
+    if [ ! -z "$HEALTHCHECK_URL" ]; then
+        curl -L $HEALTHCHECK_URL
+    fi
 elif [ ${global_exit} -eq 1 ]; then
     info "Backup, Prune, and/or Compact finished with warnings"
 else
     info "Backup, Prune, and/or Compact finished with errors"
-fi
-
-if [ ! -z "$HEALTHCHECK_URL" ]; then
-    curl -L $HEALTHCHECK_URL
 fi
 
 exit ${global_exit}
