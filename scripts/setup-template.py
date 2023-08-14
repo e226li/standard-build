@@ -1,9 +1,16 @@
 #IMPORT
-import os, sys
+import os
+import argparse
+
+#PARSE_ARGS
+parser = argparse.ArgumentParser()
+parser.add_argument("domain")
+parser.add_argument("email")
+args = parser.parse_args()
 
 #FILE_READ
 with open("../nginx-site-template.conf", "r") as f:
-    template = f.read().replace("#serverNameVar", f"{sys.argv[1]}").replace("#http://127.0.0.1:8080/", f"#ip_address")
+    template = f.read().replace("#serverNameVar", f"{args.domain}").replace("#http://127.0.0.1:8080/", f"#ip_address")
     #ADDITIONAL_REPLACE
 
 #FILE_WRITE
@@ -11,7 +18,7 @@ with open("/etc/nginx/sites-available/#service.conf", "w") as f:
     f.write(template)
 
 #GET_CERT
-os.system(f"sh ../getcert.sh {sys.argv[1]} {sys.argv[2]}")
+os.system(f"sh ../getcert.sh {args.domain} {args.email}")
 
 #GENERATE_NGINX
 # depreceated, TODO: replace with os.subprocess
