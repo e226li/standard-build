@@ -2,7 +2,7 @@
 
 . /etc/backup.conf
 
-if [ ! -z "$HEALTHCHECK_URL" ]; then
+if [ -n "$HEALTHCHECK_URL" ]; then
         curl -L "{$HEALTHCHECK_URL}/start"
 fi
 
@@ -67,7 +67,7 @@ else
     info "Backup, Prune, and/or Compact finished with errors"
 fi
 
-if [ ! -z "$HEALTHCHECK_URL" ]; then
+if [ -n "$HEALTHCHECK_URL" ]; then
         curl -L "{$HEALTHCHECK_URL}/{$global_exit}"
 fi
 
