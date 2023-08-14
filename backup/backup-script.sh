@@ -3,7 +3,7 @@
 . /etc/backup.conf
 
 if [ ! -z "$HEALTHCHECK_URL" ]; then
-        curl -L $HEALTHCHECK_URL + '/start'
+        curl -L "{$HEALTHCHECK_URL}/start"
 fi
 
 # some helpers and error handling:
@@ -68,7 +68,7 @@ else
 fi
 
 if [ ! -z "$HEALTHCHECK_URL" ]; then
-        curl -L $HEALTHCHECK_URL + "/{$global_exit}"
+        curl -L "{$HEALTHCHECK_URL}/{$global_exit}"
 fi
 
 exit ${global_exit}
