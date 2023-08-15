@@ -12,4 +12,4 @@ for directory in directories:
     for replacement in manifest_info:
         if replacement[0] == "#service":
             os.system(f". /opt/quick-recover/{replacement[1]}.conf; python3 {directory}/setup.py $DOMAIN $EMAIL")
-                
+            break
