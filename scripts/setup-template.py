@@ -11,8 +11,8 @@ args = parser.parse_args()
 #QUICK_RECOVER
 os.makedirs(os.path.dirname("/opt/quick-recover/"), exist_ok=True)
 with open("/opt/quick-recover/#service.conf", "w") as f:
-    f.write(f"export DOMAIN='{parser.domain}'\n")
-    f.write(f"export EMAIL='{parser.email}'\n")
+    f.write(f"export DOMAIN='{args.domain}'\n")
+    f.write(f"export EMAIL='{args.email}'\n")
 
 #FILE_READ
 with open("../nginx-site-template.conf", "r") as f:
