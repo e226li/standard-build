@@ -1,0 +1,9 @@
+%
+@ #ip_address 
+@ http://172.30.24.1:9001/
+%
+@ #service
+@ weechat
+%
+@ #ADDITIONAL_REPLACE
+@ template = template.replace("proxy_set_header Host $host;", "proxy_set_header Host $host;\nproxy_set_header Upgrade $http_upgrade;\nproxy_set_header Connection \"upgrade\";")
