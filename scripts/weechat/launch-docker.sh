@@ -3,4 +3,4 @@ docker run -dti --net main_subnet --ip 172.30.24.1 \
   -v /opt/weechat/config:/home/user/.weechat \
   --name=weechat \
   --restart unless-stopped \
-  weechat /home/user/.weechat
+  weechat/weechat /home/user/.weechat
