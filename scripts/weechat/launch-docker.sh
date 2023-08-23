@@ -1,6 +1,8 @@
-docker run -dti --net main_subnet --ip 172.30.24.1 \
+docker run -ti --net main_subnet --ip 172.30.24.1 \
   -e TZ=America/New_York \
-  -v /opt/weechat/config:/home/user/.weechat \
+  -v /opt/weechat/config:/home/user/.config/weechat \
+  -v /opt/weechat/data:/home/user/.local/share/weechat \
+  -v /opt/weechat/cache:/home/user/.cache/weechat \
   --name=weechat \
   --restart unless-stopped \
-  weechat/weechat /home/user/.weechat
+  weechat/weechat
