@@ -18,6 +18,7 @@ def cache_email(email: str) -> None:
     except Exception as e:
         warnings.warn(e, Warning)
 
+
 #PARSE_ARGS
 parser = argparse.ArgumentParser()
 parser.add_argument("domain")
@@ -27,7 +28,7 @@ args = parser.parse_args()
 
 #CACHE
 if args.cache_email is True and args.email is not None:
-    cache_email(email)
+    cache_email(args.email)
 if args.email is None:
     args.email = get_cached_email()
 
