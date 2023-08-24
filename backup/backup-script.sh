@@ -39,7 +39,7 @@ info "Pruning repository"
 
 /usr/local/bin/borg-linux64 prune                          \
     --list                          \
-    --prefix '{hostname}-'          \
+    --glob-archives '{hostname}-*'          \
     --show-rc                       \
     --keep-daily    7               \
     --keep-weekly   4               \
