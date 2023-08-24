@@ -26,9 +26,9 @@ for directory in directories:
     
         if replacement[0] == "#service":
             with open(f"{directory}/relaunch-docker.sh", "w") as f:
-                f.write(f"docker pull $(docker inspect {replacement[0]} | jq -r '.[0].Config.Image')\n")
-                f.write(f"docker stop {replacement[0]}\n")
-                f.write(f"docker rm {replacement[0]}\n")
+                f.write(f"docker pull $(docker inspect {replacement[1]} | jq -r '.[0].Config.Image')\n")
+                f.write(f"docker stop {replacement[1]}\n")
+                f.write(f"docker rm {replacement[1]}\n")
                 f.write(f"sh launch-docker.sh\n")
 
     if glob.glob(f"{directory}/parser.py"):
