@@ -24,6 +24,13 @@ for directory in directories:
         print(replacement[0].rstrip(), replacement[1].rstrip(), int(replacement[2].rstrip().rstrip("\n")))
         current_setup_template = current_setup_template.replace(replacement[0].rstrip(), replacement[1].rstrip(), int(replacement[2].rstrip().rstrip("\n")))
     
+        if replacement[0] == "#service":
+            with open(f"{directory}/relaunch-docker.sh", "w") as f:
+                f.write(f"docker pull $(docker inspect {replacement[0]} | jq -r '.[0].Config.Image')\n")
+                f.write(f"docker stop {replacement[0]}\n")
+                f.write(f"docker rm {replacement[0]}\n")
+                f.write(f"sh launch-docker.sh\n")
+
     if glob.glob(f"{directory}/parser.py"):
         should_continue = input(f"Custom instructions found in {directory}, continue? (Y/N) ")
         if should_continue == "Y":
