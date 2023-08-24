@@ -3,4 +3,4 @@ docker run -d --net main_subnet --ip 172.30.25.1 \
   -v /opt/thelounge/config:/config \
   --name=thelounge \
   --restart unless-stopped \
-  lscr.io/linuxserver/healthchecks:latest
+  lscr.io/linuxserver/thelounge:latest
