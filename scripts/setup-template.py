@@ -1,12 +1,35 @@
 #IMPORT
 import os
 import argparse
+import warnings
+
+
+#CACHE_FUNCTIONS
+def get_cached_email() -> str:
+    with open("../email.cache", "r") as f:
+        email = f.read().strip()
+    return email
+
+
+def cache_email(email: str) -> None:
+    try:
+        with open("../email.cache", "w") as f:
+            f.write(email)
+    except Exception as e:
+        warnings.warn(e, Warning)
 
 #PARSE_ARGS
 parser = argparse.ArgumentParser()
 parser.add_argument("domain")
-parser.add_argument("email")
+parser.add_argument("email", default=None) # to not recache emails retreived from cache
+parser.add_argument("cache_email", default=True)
 args = parser.parse_args()
+
+#CACHE
+if args.cache_email is True and args.email is not None:
+    cache_email(email)
+if args.email is None:
+    args.email = get_cached_email()
 
 #QUICK_RECOVER
 os.makedirs(os.path.dirname("/opt/quick-recover/"), exist_ok=True)
