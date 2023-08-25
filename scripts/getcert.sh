@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 
 systemctl stop nginx
 certbot certonly -n --standalone --agree-tos -d $1 -m $2
