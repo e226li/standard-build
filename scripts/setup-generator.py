@@ -33,6 +33,7 @@ for directory in directories:
         if replacement[0] == "#service":
             with open(f"{directory}/relaunch-docker.sh", "w") as f:
                 f.write("#!/bin/sh\n")
+                f.write("cd \"${0%/*}\"\n")
                 f.write(f"docker pull $(docker inspect {replacement[1].strip()} | jq -r '.[0].Config.Image')\n")
                 f.write(f"docker stop {replacement[1].strip()}\n")
                 f.write(f"docker rm {replacement[1].strip()}\n")
