@@ -1,4 +1,7 @@
-import glob, importlib, sys
+import glob
+import importlib
+import sys
+import subprocess
 
 with open("setup-template.py", "r") as f:
     setup_template = f.read()
@@ -9,6 +12,9 @@ if len(sys.argv) >= 2:
     directories = sys.argv[1:]
 
 for directory in directories:
+    if ".." in directory:
+        raise OSError("Illegal directory path")
+
     if not glob.glob(f"{directory}/manifest.dat"):
         continue
         
@@ -26,10 +32,12 @@ for directory in directories:
     
         if replacement[0] == "#service":
             with open(f"{directory}/relaunch-docker.sh", "w") as f:
-                f.write(f"docker pull $(docker inspect {replacement[1]} | jq -r '.[0].Config.Image')\n")
-                f.write(f"docker stop {replacement[1]}\n")
-                f.write(f"docker rm {replacement[1]}\n")
+                f.write("#!/bin/sh\n")
+                f.write(f"docker pull $(docker inspect {replacement[1].strip()} | jq -r '.[0].Config.Image')\n")
+                f.write(f"docker stop {replacement[1].strip()}\n")
+                f.write(f"docker rm {replacement[1].strip()}\n")
                 f.write(f"sh launch-docker.sh\n")
+            subprocess.run(["chmod", "+x", f"{directory}/relaunch-docker.sh"])
 
     if glob.glob(f"{directory}/parser.py"):
         should_continue = input(f"Custom instructions found in {directory}, continue? (Y/N) ")
