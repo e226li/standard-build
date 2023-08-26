@@ -1,8 +1,7 @@
 name: Environment Setup Test
-run-name: ${{ github.actor }} is testing out Gitea Actions 🚀
 on: [push, pull_request]
 jobs:
-  Explore-Gitea-Actions:
+  Setup:
     runs-on: ubuntu-22.04
     steps:
       - name: Check out repository code
