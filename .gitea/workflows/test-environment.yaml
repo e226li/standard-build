@@ -9,7 +9,8 @@ jobs:
         uses: actions/checkout@v3
       - run: cd ${{ github.workspace }}
       - name: Run repository setup scripts
-        run: sh setup.sh
-        run: sh scripts/get-docker.sh
+        run: |
+          sh setup.sh
+          sh scripts/get-docker.sh
       - name: Check if Docker was installed         
         run: docker run hello-world
