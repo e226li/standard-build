@@ -1,0 +1,15 @@
+name: Environment Setup Test
+run-name: ${{ github.actor }} is testing out Gitea Actions 🚀
+on: [push, pull_request]
+jobs:
+  Explore-Gitea-Actions:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: cd ${{ github.workspace }}
+      - name: Run repository setup scripts
+        run: sh setup.sh
+        run: sh scripts/get-docker.sh
+      - name: Check if Docker was installed         
+        run: docker run hello-world
