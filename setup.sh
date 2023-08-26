@@ -9,5 +9,3 @@ apt-get install -y ca-certificates curl gnupg lsb-release nano wget tmux htop py
 
 rm -rf /etc/nginx/sites-available/default
 rm -rf /etc/nginx/sites-enabled/default
-
-git clone https://git.162536.xyz/drunkendog/standard-build.git
