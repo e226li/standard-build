@@ -7,6 +7,6 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Check for os.system (#2)
-      - run: |
+        run: |
           git ls-files | xargs grep os.system
           exit $(git ls-files | xargs grep os.system | wc -l)
