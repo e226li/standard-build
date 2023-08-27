@@ -13,5 +13,7 @@ jobs:
           sh scripts/get-docker.sh
       - name: Check if Docker was installed         
         run: docker run --name hello-world hello-world
+      - name: Clean up hello-world container
+        run: docker rm hello-world  
       - name: Clean up network (see #3)
         run: docker network rm main_subnet
