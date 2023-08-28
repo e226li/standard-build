@@ -11,6 +11,7 @@ jobs:
         run: |
           sh setup.sh
           sh scripts/get-docker.sh
+          sh post-pull.sh
       - name: Check if Docker was installed         
         run: docker run --name hello-world hello-world
       - name: Clean up hello-world container
