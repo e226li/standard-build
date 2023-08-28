@@ -29,4 +29,4 @@ jobs:
       - name: Get Docker
         run: curl -sL get.docker.io | bash
       - name: Build and upload image
-        run: sh actions/build-docker-image.sh
+        run: sh actions/build-docker-image.sh ${{ secrets.DOCKER_USERNAME }} ${{ secrets.DOCKER_TOKEN }}
