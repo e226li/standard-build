@@ -15,7 +15,7 @@ jobs:
         run: curl -s https://hub.docker.com/v2/repositories/drunkendog/standard-build-actions/tags/latest 
           | jq '.last_updated' 
           | xargs -i date --date {} +%s 
-          | xargs -i expr $(date +%s) - {} >> $GITHUB_OUTPUT
+          | xargs -i expr $(date +%s) - {}
   Build-Image:
     needs: [Check-Last-Time]
     if: needs.Check-Last-Time.outputs.last-time > 1
