@@ -1,12 +1,14 @@
 name: Build Docker Image for Actions
 on: [push]
+if: github.ref == 'refs/heads/main'
 jobs:
-  Check-Last-Time:
+  Check-If-Rebuild:
     runs-on: ubuntu-22.04
     env: 
       DEBIAN_FRONTEND: noninteractive
     outputs:
       last-time: ${{ steps.last-time.outputs.last-time }}
+      dockerfile-changed: ${{ steps.dockerfile-changed.outputs.dockerfile-changed }}
     steps:
       - name: Install jq
         run: |
@@ -19,9 +21,17 @@ jobs:
           | xargs -i date --date {} +%s 
           | xargs -i expr $(date +%s) - {}
           | xargs -i echo last-time={} >> $GITHUB_OUTPUT
+      - name: Check if Dockerfile changed
+        id: dockerfile-changed
+        run: |
+          if ${{ github.event_name == 'pull_request' }}; then
+              echo dockerfile-changed=$(git diff --name-only -r HEAD^1 HEAD | grep -x actions/Dockerfile | wc -l) >> $GITHUB_OUTPUT
+          else
+              echo dockerfile-changed=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep -x actions/Dockerfile | wc -l) >> $GITHUB_OUTPUT
+          fi
   Build-Image:
-    needs: [Check-Last-Time]
-    if: needs.Check-Last-Time.outputs.last-time > 86400
+    needs: [Check-If-Rebuild]
+    if: needs.Check-If-Rebuild.outputs.last-time > 86400 || needs.Check-If-Rebuild.outputs.dockerfile-changed == 1
     runs-on: ubuntu-22.04
     steps:
       - name: Check out repository code
