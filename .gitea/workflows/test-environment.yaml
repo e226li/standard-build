@@ -14,5 +14,5 @@ jobs:
           sh post-pull.sh
       - name: Check if Docker was installed         
         run: docker run --rm --name hello-world hello-world 
-      - name: Clean up network (see #3)
+      - name: Clean up network (see \#3)
         run: docker network rm main_subnet
