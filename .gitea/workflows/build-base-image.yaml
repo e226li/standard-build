@@ -10,12 +10,6 @@ jobs:
           | jq '.last_updated' 
           | xargs -i date --date {} +%s 
           | xargs -i expr $(date +%s) - {}
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - name: Get Docker
-        run: curl -sL get.docker.io | bash
-      - name: Build and upload image
-        run: sh actions/build-docker-image.sh
   Build-Image:
     needs: [Check-Last-Time]
     if: Check-Last-Time.outputs.last-time < 1
