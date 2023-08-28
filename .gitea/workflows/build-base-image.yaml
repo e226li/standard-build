@@ -3,7 +3,13 @@ on: [push, pull_request]
 jobs:
   Check-Last-Time:
     runs-on: ubuntu-22.04
+    env: 
+      DEBIAN_FRONTEND: noninteractive
     steps:
+      - name: Install jq
+        run: |
+          apt-get update -y
+          apt-get install -y jq
       - name: Check last repository build time
         id: last-time
         run: curl -s https://hub.docker.com/v2/repositories/drunkendog/standard-build-actions/tags/latest 
