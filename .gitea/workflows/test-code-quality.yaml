@@ -6,7 +6,12 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Check for os.system (#2)
+      - name: Check for --prefix in Borg commands (\#1)
+        continue-on-error: true
+        run: |
+          git ls-files backup/ | xargs grep '\-\-prefix'
+          exit $(git ls-files backup/ | xargs grep '\-\-prefix' | wc -l)
+      - name: Check for os.system (\#2)
         continue-on-error: true
         run: |
           git ls-files | xargs grep os.system
