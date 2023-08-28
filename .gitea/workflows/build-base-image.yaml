@@ -1,0 +1,29 @@
+name: Build Docker Image for Actions
+on: [push, pull_request]
+jobs:
+  Check-Last-Time:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check last repository build time
+        id: last-time
+        run: curl -s https://hub.docker.com/v2/repositories/drunkendog/standard-build-actions/tags/latest 
+          | jq '.last_updated' 
+          | xargs -i date --date {} +%s 
+          | xargs -i expr $(date +%s) - {}
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Get Docker
+        run: curl -sL get.docker.io | bash
+      - name: Build and upload image
+        run: sh actions/build-docker-image.sh
+  Build-Image:
+    needs: [Check-Last-Time]
+    if: Check-Last-Time.outputs.last-time < 1
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Get Docker
+        run: curl -sL get.docker.io | bash
+      - name: Build and upload image
+        run: sh actions/build-docker-image.sh
