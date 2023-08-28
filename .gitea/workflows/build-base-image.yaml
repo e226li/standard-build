@@ -21,7 +21,7 @@ jobs:
           | xargs -i echo last-time={} >> $GITHUB_OUTPUT
   Build-Image:
     needs: [Check-Last-Time]
-    if: needs.Check-Last-Time.outputs.last-time > 1
+    if: needs.Check-Last-Time.outputs.last-time > 86400
     runs-on: ubuntu-22.04
     steps:
       - name: Check out repository code
