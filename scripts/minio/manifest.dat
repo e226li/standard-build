@@ -1,0 +1,10 @@
+
+%
+@ #ip_address 
+@ http://172.30.26.1:9090/
+%
+@ #service
+@ minio
+%
+@ #ADDITIONAL_REPLACE
+@ template = template.replace("proxy_set_header Host $host;", "proxy_set_header Host $host;\nproxy_set_header Upgrade $http_upgrade;\nproxy_set_header Connection \"upgrade\";")
