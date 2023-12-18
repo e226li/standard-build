@@ -3,6 +3,7 @@
 docker run -d --net main_subnet --ip 172.30.26.1 \
   -e TZ=America/New_York \
   -v /opt/minio/data:/data \
+  -p 9000:9000 \
   --name=minio \
   -e "MINIO_ROOT_USER=$MINIO_USER" \
   -e "MINIO_ROOT_PASSWORD=$MINIO_PASSWORD" \
