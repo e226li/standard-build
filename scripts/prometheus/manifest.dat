@@ -9,4 +9,4 @@
 @ template = template.replace("proxy_set_header Host $host;", "proxy_set_header Host $host;\nproxy_set_header Upgrade $http_upgrade;\nproxy_set_header Connection \"upgrade\";")
 %
 @ #START_CONTAINER
-@ os.system("mkdir -p /opt/prometheus/data && touch /opt/prometheus/prometheus.yaml && chown -R nobody:nogroup /opt/prometheus/")
+@ os.system("mkdir -p /opt/prometheus/data && touch /opt/prometheus/prometheus.yaml && touch /opt/prometheus/web.yaml && chown -R nobody:nogroup /opt/prometheus/")
