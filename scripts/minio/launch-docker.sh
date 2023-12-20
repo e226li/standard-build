@@ -9,6 +9,6 @@ docker run -d --net main_subnet --ip 172.30.26.1 \
   -e "MINIO_ROOT_PASSWORD=$MINIO_PASSWORD" \
   -e "MINIO_PROMETHEUS_URL=$PROMETHEUS_URL" \
   -e "MINIO_PROMETHEUS_JOB_ID=$PROMETHEUS_JOB_ID" \
-  -e "MINIO_PROMETHEUS_AUTH_TOKEN=$PROMETHEUS_AUTH_TOKEN"
+  -e "MINIO_PROMETHEUS_AUTH_TOKEN=$PROMETHEUS_AUTH_TOKEN" \
   --restart unless-stopped \
 quay.io/minio/minio server /data --console-address ":9090"
