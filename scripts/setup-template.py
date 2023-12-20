@@ -22,8 +22,8 @@ def cache_email(email: str) -> None:
 #PARSE_ARGS
 parser = argparse.ArgumentParser()
 parser.add_argument("domain")
-parser.add_argument("email", default=None) # to not recache emails retreived from cache
-parser.add_argument("cache_email", default=True)
+parser.add_argument("email", nargs='?', default=None) # to not recache emails retreived from cache
+parser.add_argument("cache_email", nargs='?', default=True)
 args = parser.parse_args()
 
 #CACHE
