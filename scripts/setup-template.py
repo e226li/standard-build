@@ -1,5 +1,6 @@
 #IMPORT
 import os
+import subprocess
 import argparse
 import warnings
 
@@ -37,6 +38,12 @@ os.makedirs(os.path.dirname("/opt/quick-recover/"), exist_ok=True)
 with open("/opt/quick-recover/#service.conf", "w") as f:
     f.write(f"export DOMAIN='{args.domain}'\n")
     f.write(f"export EMAIL='{args.email}'\n")
+
+    try:
+        return_val = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True)
+        f.write(f"export REPO_HASH='{return_val.stdout.decode().rstrip()}'")
+    except FileNotFoundError:
+        pass
 
 #FILE_READ
 with open("../nginx-site-template.conf", "r") as f:
