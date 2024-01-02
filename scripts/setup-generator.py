@@ -1,7 +1,10 @@
 import glob
 import importlib
+import os
 import sys
 import subprocess
+
+os.chdir(sys.path[0])
 
 with open("setup-template.py", "r") as f:
     setup_template = f.read()

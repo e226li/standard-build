@@ -3,6 +3,11 @@ import os
 import subprocess
 import argparse
 import warnings
+import sys
+
+
+#CHANGE_WORKING_DIRECTORY
+os.chdir(sys.path[0])
 
 
 #CACHE_FUNCTIONS
