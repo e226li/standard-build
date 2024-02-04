@@ -1,0 +1,3 @@
+.idea/*
+scripts/*/relaunch-docker.sh
+scripts/*/setup.py
