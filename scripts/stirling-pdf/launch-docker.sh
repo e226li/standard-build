@@ -6,4 +6,5 @@ docker run -d --net main_subnet --ip 172.30.28.1 \
   -e DOCKER_ENABLE_SECURITY=true \
   -e SECURITY_ENABLE_LOGIN=true \
   --name stirling-pdf \
+  --restart unless-stopped \
   frooodle/s-pdf:latest
